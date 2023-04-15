@@ -1,0 +1,6 @@
+iamdataset/
+
+venv/
+.idea/
+__pycache__/
+*.pt
