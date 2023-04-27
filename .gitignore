@@ -4,3 +4,5 @@ venv/
 .idea/
 __pycache__/
 *.pt
+
+!orientation/model-Densenet.1.pt # rely on git lfs to store the model

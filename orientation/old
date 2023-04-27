@@ -1,0 +1,22 @@
+
+# evaluate the model
+def evaluate_model(test_dl, model):
+    predictions, actuals = list(), list()
+    for i, (inputs, targets) in enumerate(test_dl):
+        # evaluate the model on the test set
+        yhat = model(inputs)
+        # retrieve numpy array
+        yhat = yhat.detach().numpy()
+        actual = targets.numpy()
+        # convert to class labels
+        yhat = numpy.argmax(yhat, axis=1)
+        # reshape for stacking
+        actual = actual.reshape((len(actual), 1))
+        yhat = yhat.reshape((len(yhat), 1))
+        # store
+        predictions.append(yhat)
+        actuals.append(actual)
+    predictions, actuals = numpy.vstack(predictions), numpy.vstack(actuals)
+    # calculate accuracy
+    acc = sklearn.metrics.accuracy_score(actuals, predictions)
+    return acc
